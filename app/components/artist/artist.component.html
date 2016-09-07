@@ -1,18 +1,31 @@
 <div *ngIf="artist">
-  <header class="artist-header">
-    <div *ngIf="artist.images.length > 0">
-      <img src="{{artist.images[0].url}}" class="artist-thumb img-circle" alt="">
-    </div>
-    <h1>{{artist.name}}</h1>
+  <header class="artist-header clearfix">
+
+    <h1>
+	    <span *ngIf="artist.images.length > 0">
+		    <img src="{{artist.images[0].url}}" class="artist-thumb img-circle" alt="">
+	    </span>
+	    {{artist.name}}
+    </h1>
     <p *ngIf="artist.genres.length > 0">
       Genres: <span *ngFor="let genres of artist.genres">{{genres}}</span>
     </p>
+	  <div class="col-md-3 col-md-offset-1">
+		  <a routerLink="/top-tracks/{{artist.id}}" class="btn btn-success">View all Tracks</a>
+	  </div>
   </header>
+
+	<form id="albumFilter">
+		<div class="form-group">
+			<label class="control-label" for="inputDefault">Filter Album</label>
+			<input type="text" [(ngModel)]="term" name="albumFilter" class="form-control" id="inputDefault">
+		</div>
+	</form>
 
   <div class="artist-albums">
     <div class="row flexy">
 
-      <div class="col-md-3 well" *ngFor="let album of albums">
+      <div class="col-md-3 well" *ngFor="let album of albums | filter:term ">
         <div class="album" *ngIf="album.images.length > 0">
 
           <img class="album-thumb img-thumbnail" src="{{album.images[0].url}}" alt="">

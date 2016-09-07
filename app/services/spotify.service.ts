@@ -8,13 +8,14 @@ export class SpotifyService {
   private artistUrl: string;
   private albumsUrl: string;
   private albumUrl: string;
+  private tracksUrl: string;
 
   constructor(private _http: Http) {
 
   }
 
   searchMusic(str: string, type = 'artist') {
-    this.searchUrl = `https://api.spotify.com/v1/search?query=${str}&offset=0&limit=20&type=${type}&market=US`;
+    this.searchUrl = `https://api.spotify.com/v1/search?query=${str}&offset=0&limit=20&type=${type}&market=TW`;
     return this._http.get(this.searchUrl)
       .map(res => res.json());
   }
@@ -34,6 +35,12 @@ export class SpotifyService {
   getAlbum(id: string) {
     this.albumUrl = `https://api.spotify.com/v1/albums/${id}`;
     return this._http.get(this.albumUrl)
+      .map(res => res.json());
+  }
+
+  getTopTracks(id: string) {
+    this.tracksUrl = `https://api.spotify.com/v1/artists/${id}/top-tracks?country=TW`;
+    return this._http.get(this.tracksUrl)
       .map(res => res.json());
   }
 }
