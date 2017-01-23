@@ -8,11 +8,15 @@ import {AboutComponent} from "./components/about/about.component";
 import {ArtistComponent} from "./components/artist/artist.component";
 import {AlbumComponent} from "./components/album/album.component";
 import {TrackComponent} from "./components/track/track.component";
+import {SingleTrackComponent} from './components/single/single.component';
+import {} from './components/playlist/playlist.component';
+
 import {SpotifyService} from "./services/spotify.service";
 import {HttpModule, JsonpModule} from "@angular/http";
 import {appRouterProviders} from "./app.route";
 import {FilterPipe} from "./app.filter.pipes";
 import {MSPipe} from "./app.ms-to-minute.pipe";
+import {PlaylistComponent} from "./components/playlist/playlist.component";
 
 
 @NgModule({
@@ -26,6 +30,8 @@ import {MSPipe} from "./app.ms-to-minute.pipe";
     AlbumComponent,
     TrackComponent,
     FilterPipe,
+    SingleTrackComponent,
+    PlaylistComponent,
     MSPipe
   ],
   bootstrap: [AppComponent],

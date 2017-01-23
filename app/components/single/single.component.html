@@ -1,0 +1,21 @@
+<div id="single" *ngIf="track">
+	<header class="album-header">
+		<div class="row">
+			<div class="col-md-4">
+				<div *ngIf="track.album.images.length > 0">
+					<img src="{{track.album.images[0].url}}" class="album-thumb" alt="">
+				</div>
+			</div>
+			<div class="col-md-8">
+				<h4 *ngIf="track.artists.length > 0">
+          <span class="spacer" *ngFor="let artist of track.artists">
+            <a routerLink="/artist/{{artist.id}}">{{artist.name}}</a>
+          </span>
+				</h4>
+				<h2>{{track.name}}</h2>
+				<h5>Album Name: <a routerLink="/album/{{track.album.id}}">{{track.album.name}}</a></h5>
+				<a href="{{track.external_urls.spotify}}" target="_blank" class="btn btn-primary">View In Spotify</a>
+			</div>
+		</div>
+	</header>
+</div>

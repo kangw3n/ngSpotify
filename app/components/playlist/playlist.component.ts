@@ -6,12 +6,12 @@ import {ActivatedRoute} from "@angular/router";
 
 @Component({
   moduleId: module.id,
-  selector: 'album',
-  templateUrl: 'album.component.html'
+  selector: 'playlist',
+  templateUrl: 'playlist.component.html'
 })
-export class AlbumComponent implements OnInit {
+export class PlaylistComponent implements OnInit {
   id: string;
-  album: Album[];
+  playlist: Array<string>;
 
   constructor(private _spotifyService: SpotifyService,
               private _route: ActivatedRoute) {}
@@ -21,10 +21,10 @@ export class AlbumComponent implements OnInit {
     this._route.params
       .map(params => params['id'])
       .subscribe((id) => {
-        this._spotifyService.getAlbum(id)
-          .subscribe(album => {
-            console.log(album);
-            this.album = album;
+        this._spotifyService.getPlaylist(id)
+          .subscribe(playlist => {
+            console.log(playlist);
+            this.playlist = playlist;
           })
 
       })

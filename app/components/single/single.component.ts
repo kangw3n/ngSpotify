@@ -1,17 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../../services/spotify.service";
-import {Album} from "../../model/album";
 import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
   moduleId: module.id,
-  selector: 'album',
-  templateUrl: 'album.component.html'
+  selector: 'single',
+  templateUrl: 'single.component.html'
 })
-export class AlbumComponent implements OnInit {
+export class SingleTrackComponent implements OnInit {
   id: string;
-  album: Album[];
+  track: Array<string>;
 
   constructor(private _spotifyService: SpotifyService,
               private _route: ActivatedRoute) {}
@@ -21,10 +20,10 @@ export class AlbumComponent implements OnInit {
     this._route.params
       .map(params => params['id'])
       .subscribe((id) => {
-        this._spotifyService.getAlbum(id)
-          .subscribe(album => {
-            console.log(album);
-            this.album = album;
+        this._spotifyService.getTrack(id)
+          .subscribe(track => {
+            console.log(track);
+            this.track = track;
           })
 
       })

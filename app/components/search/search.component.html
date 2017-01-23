@@ -10,10 +10,13 @@
       class="form-control"
       placeholder="Search Music..."
       name="searchStr"
-      [(ngModel)]="searchStr"
-      (keyup)="searchMusic()"
+      #input
+      [value]="searchStr"
     >
   </div>
+	<select (change)="onChange($event.target.value)">
+		<option *ngFor="let i of types">{{i}}</option>
+	</select>
 </form>
 
 <div *ngIf="searchRes">
@@ -21,13 +24,33 @@
     <div class="row">
       <div class="col-md-12">
         <div class="search-res well">
-          <h4><a routerLink="/artist/{{res.id}}">{{res.name}}</a></h4>
-          <div>
-            <strong>Genres: </strong>
-            <span *ngFor="let genre of res.genres">{{genre}}</span>
+          <h4>
+	          <!-- to do: track artists album-->
+	          <a routerLink="/{{queryType}}/{{res.id}}">{{res.name}}</a>
+          </h4>
+
+	        <div *ngIf="res.genres">
+	          <strong>Genres: </strong>
+            <span class="spacer" *ngFor="let genre of res.genres">{{genre}}</span>
           </div>
+
+	        <div *ngIf="res.artists">
+		        <strong>Artists: </strong>
+		        <span class="spacer" *ngFor="let artist of res.artists"><a routerLink="/artist/{{artist.id}}">{{artist.name}}</a></span>
+	        </div>
+
+	        <div *ngIf="res.album">
+		        <strong>Album: </strong>
+		        <span class="spacer"><a routerLink="/album/{{res.album.id}}">{{res.album.name}}</a></span>
+	        </div>
+
+
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="errorMsg">
+	<h1>Error Occurs: {{errorMsg}}</h1>
 </div>

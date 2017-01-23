@@ -23,7 +23,10 @@
     <h2>Album Tracks</h2>
     <div *ngFor="let track of album.tracks.items">
       <div class="well">
-        <h5>{{track.track_number}} - {{track.name}}</h5>
+        <h5>{{track.track_number}} - <a routerLink="/track/{{track.id}}"> {{track.name}}</a></h5>
+	      <div>
+		      Artists: <span class="spacer" *ngFor="let artist of track.artists"> <a routerLink="/artist/{{artist.id}}">{{artist.name}}</a></span>
+	      </div>
         <a href="{{track.preview_url}}" target="_blank">Preview Track</a>
       </div>
     </div>

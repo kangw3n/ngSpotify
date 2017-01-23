@@ -1,3 +1,7 @@
+a {
+	color: #2ebd59;
+}
+
 .artist-header {
   padding-bottom: 20px;
   margin-bottom: 20px;
@@ -36,4 +40,15 @@
   margin-bottom: 20px;
   overflow: auto;
   min-height: 400px;
+	display: flex;
+	align-items: center;
+}
+
+.spacer {
+	display: inline-block;
+	margin: 0 5px;
+}
+.navbar-inverse .navbar-nav > li > a.active {
+	color: #2ebd59;
+	font-weight: bolder;
 }
